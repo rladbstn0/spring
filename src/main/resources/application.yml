@@ -3,4 +3,10 @@ server:
 
 spring:
   application:
-    name : back
+    name: back
+
+  datasource:
+    url: jdbc:h2:./db_dev;Mode=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
