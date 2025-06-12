@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,18 +15,18 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity //아래 구조대로 DB 테이블을 만들어야 한다.
 @Getter
 @Setter
-@RequiredArgsConstructor
 @ToString
+@NoArgsConstructor
 public class Post {
     @Id //Primary Key
     @GeneratedValue(strategy = IDENTITY) // Auto_increment
     private int id; //int
-    private final String title; //varchar(255)
+    private  String title; //varchar(255)
     @Column(columnDefinition = "TEXT")
-    private final String content;
+    private  String content;
 
-    public Post(){
-        this.title = "";
-        this.content = "";
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
