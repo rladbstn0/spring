@@ -34,9 +34,11 @@ public class BaseInitData {
     void work1() {
         if (postService.count() > 0) return;
 
-        Post post1 = new Post("제목 1", "내용 1"); // INSERT INTO post SET title = '제목 1';
-        postService.save(post1);
-        Post post2 = postService.save(new Post("제목 2", "내용 2"));
+        Post post1 = postService.write("제목 1", "내용 1");
+        Post post2 = postService.write("제목 2", "내용 2");
+
+        System.out.println(post1.getId());
+        System.out.println(post2.getId());
 
         System.out.println("기본 데이터가 초기화되었습니다.");
 
@@ -56,8 +58,14 @@ public class BaseInitData {
         Optional<Post> opPost1 = postService.findById(1);
         Post post1 = opPost1.get();
 
-//        if(true) throw new RuntimeException("work3에서 예외 발생");
 
         postService.modify(post1, "제목 1 수정", "내용 1 수정");
+        if(true) throw new RuntimeException("work3에서 예외 발생");
+
+        Optional<Post> opPost2 = postService.findById(1);
+        Post post2 = opPost1.get();
+
+
+        postService.modify(post1, "제목 2 수정", "내용 2 수정");
     }
 }

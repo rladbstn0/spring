@@ -16,9 +16,6 @@ public class PostService {
     public long count() {
         return postRepository.count();
     }
-    public Post save(Post post) {
-        return postRepository.save(post);
-    }
     public Optional<Post> findById(int id) {
         return postRepository.findById(id);
     }
@@ -29,5 +26,12 @@ public class PostService {
         post.setModifyDate(LocalDateTime.now());
 
         postRepository.save(post); //UPDATE post SET title = "", content = "", modify_date = "" WHERE id = "";
+    }
+
+    public Post write(String title, String content) {
+        Post post = new Post(title, content);
+        postRepository.save(post);
+
+        return post;
     }
 }
