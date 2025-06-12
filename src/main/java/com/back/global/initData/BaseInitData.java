@@ -19,16 +19,14 @@ public class BaseInitData {
     @Lazy
     private BaseInitData self;
     private final PostService postService;
-    private int callCount = 0;
 
     @Bean
     ApplicationRunner baseInitDataApplicationRunner() {
         return args -> {
             self.work1();
             self.work2();
-            self.work3();
 
-            callCount++;
+            new Thread(()->self.work3()).start();
         };
     }
 
@@ -36,9 +34,9 @@ public class BaseInitData {
     void work1() {
         if (postService.count() > 0) return;
 
-        Post post1 = new Post("제목1", "내용1"); // INSERT INTO post SET title = '제목 1';
+        Post post1 = new Post("제목 1", "내용 1"); // INSERT INTO post SET title = '제목 1';
         postService.save(post1);
-        Post post2 = postService.save(new Post("제목1", "내용2"));
+        Post post2 = postService.save(new Post("제목 2", "내용 2"));
 
         System.out.println("기본 데이터가 초기화되었습니다.");
 
@@ -57,6 +55,8 @@ public class BaseInitData {
     void work3() {
         Optional<Post> opPost1 = postService.findById(1);
         Post post1 = opPost1.get();
+
+//        if(true) throw new RuntimeException("work3에서 예외 발생");
 
         postService.modify(post1, "제목 1 수정", "내용 1 수정");
     }
