@@ -16,10 +16,15 @@ public class BaseInitData {
     ApplicationRunner baseInitDataApplicationRunner() {
         return args -> {
             System.out.println("기본 데이터가 초기화되었습니다.");
+            if(postRepository.count() > 0) return;
 
             Post post = new Post();
             post.setTitle("제목 1");
             postRepository.save(post); // INSERT INTO post SET title = '제목 1';
+
+            Post post2 = new Post();
+            post2.setTitle("제목 2");
+            postRepository.save(post2);
 
 //            postRepository.count(); //SELECT count(*) FROM post;
         };
