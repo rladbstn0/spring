@@ -17,13 +17,9 @@ public class BaseInitData {
         return args -> {
             if(postRepository.count() > 0) return;
 
-            Post post = new Post();
-            post.setTitle("제목 1");
-            postRepository.save(post); // INSERT INTO post SET title = '제목 1';
+            Post post1 = postRepository.save(new Post("제목1", "내용1")); // INSERT INTO post SET title = '제목 1';
 
-            Post post2 = new Post();
-            post2.setTitle("제목 2");
-            postRepository.save(post2);
+            Post post2 = postRepository.save(new Post("제목2", "내용2"));
 
             System.out.println("기본 데이터가 초기화되었습니다.");
 
