@@ -14,7 +14,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Setter
 public class Post {
     @Id //Primary Key
-    @GeneratedValue(strategy = IDENTITY) // Auti_increment
+    @GeneratedValue(strategy = IDENTITY) // Auto_increment
     private int id; //int
     private String title; //varchar(255)
 }
