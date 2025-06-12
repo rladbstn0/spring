@@ -15,7 +15,6 @@ public class BaseInitData {
     @Bean
     ApplicationRunner baseInitDataApplicationRunner() {
         return args -> {
-            System.out.println("기본 데이터가 초기화되었습니다.");
             if(postRepository.count() > 0) return;
 
             Post post = new Post();
@@ -25,6 +24,8 @@ public class BaseInitData {
             Post post2 = new Post();
             post2.setTitle("제목 2");
             postRepository.save(post2);
+
+            System.out.println("기본 데이터가 초기화되었습니다.");
 
 //            postRepository.count(); //SELECT count(*) FROM post;
         };
