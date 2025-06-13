@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -23,8 +25,13 @@ public class PostRepositoryTest {
 
     @Test
     @DisplayName("글 생성")
+    @Transactional
+    @Rollback //원상복구
     void t2() {
         Post post = new Post("제목 new", "내용 new");
+        assertThat(post.getId()).isEqualTo(0);
+
+
         postRepository.save(post);
 
         assertThat(post.getId()).isGreaterThan(0);
