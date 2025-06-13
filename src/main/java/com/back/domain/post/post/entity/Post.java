@@ -15,11 +15,15 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class Post extends BaseEntity {
+    private int authorId;
+    private String title;
+    private String content;
     private  String title; //varchar(255)
     @Column(columnDefinition = "TEXT")
     private  String content;
 
-    public Post(String title, String content) {
+    public Post(int authorId, String title, String content) {
+        this.authorId = authorId;
         this.title = title;
         this.content = content;
     }

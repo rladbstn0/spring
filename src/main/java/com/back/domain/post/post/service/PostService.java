@@ -25,8 +25,8 @@ public class PostService {
          //UPDATE post SET title = "", content = "", modify_date = "" WHERE id = "";
     }
 
-    public Post write(String title, String content) {
-        Post post = new Post(title, content);
+    public Post write(int authorId, String title, String content) {
+        Post post = new Post(authorId, title, content);
         postRepository.save(post);
 
         return post;

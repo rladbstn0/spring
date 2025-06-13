@@ -39,8 +39,8 @@ public class BaseInitData {
 
         if (postService.count() > 0) return;
 
-        Post post1 = postService.write("제목 1", "내용 1");
-        Post post2 = postService.write("제목 2", "내용 2");
+        Post post1 = postService.write(3,"제목 1", "내용 1");
+        Post post2 = postService.write(4,"제목 2", "내용 2");
 
         System.out.println("기본 데이터가 초기화되었습니다.");
     }
