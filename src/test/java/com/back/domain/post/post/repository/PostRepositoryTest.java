@@ -5,14 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
 @Transactional
-@Rollback //원상복구
+//@Rollback(false) //이게 없다면 Transaction에서 기본적으로 롤백
 public class PostRepositoryTest {
     @Autowired
     private PostRepository postRepository;
