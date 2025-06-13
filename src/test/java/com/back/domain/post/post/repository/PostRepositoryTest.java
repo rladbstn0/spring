@@ -15,7 +15,7 @@ public class PostRepositoryTest {
 
     @Test
     @DisplayName("2번글 조회")
-    void t1(){
+    void t1() {
         Post post2 = postRepository.findById(2).get();
         assertThat(post2.getTitle()).isEqualTo("제목 2");
         assertThat(post2.getContent()).isEqualTo("내용 2");
@@ -23,7 +23,7 @@ public class PostRepositoryTest {
 
     @Test
     @DisplayName("글 생성")
-    void t2(){
+    void t2() {
         Post post = new Post("제목 new", "내용 new");
         postRepository.save(post);
 
@@ -32,4 +32,11 @@ public class PostRepositoryTest {
         assertThat(post.getContent()).isEqualTo("내용 new");
     }
 
+    @Test
+    @DisplayName("글 개수 조회")
+    void t3() {
+        long count = postRepository.count();
+
+        assertThat(count).isEqualTo(2);
+    }
 }
