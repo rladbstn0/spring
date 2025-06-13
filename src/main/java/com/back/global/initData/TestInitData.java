@@ -1,5 +1,4 @@
 package com.back.global.initData;
-
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -8,31 +7,26 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.context.annotation.Profile;
 
+@Profile("test")
 @Configuration
 @RequiredArgsConstructor
-// dev, test, prod 등 관계없이 항상 실행
-public class BaseInitData {
+public class TestInitData {
     @Autowired
     @Lazy
-    private BaseInitData self;
+    private TestInitData self;
     private final PostService postService;
 
     @Bean
-    ApplicationRunner baseInitDataApplicationRunner() {
+    ApplicationRunner testInitDataApplicationRunner() {
         return args -> {
-            self.work1();
+            if (postService.count() >= 4) return;
+
+            Post post1 = postService.write("제목 3", "내용 3");
+            Post post2 = postService.write("제목 4", "내용 4");
+
+            System.out.println("테스트용 데이터가 초기화되었습니다.");
         };
-    }
-
-    @Transactional
-    void work1() {
-        if (postService.count() > 0) return;
-
-        Post post1 = postService.write("제목 1", "내용 1");
-        Post post2 = postService.write("제목 2", "내용 2");
-
-        System.out.println("기본 데이터가 초기화되었습니다.");
     }
 }

@@ -45,7 +45,7 @@ public class PostRepositoryTest {
     void t3() {
         long count = postRepository.count();
 
-        assertThat(count).isEqualTo(2);
+        assertThat(count).isEqualTo(4);
     }
 
 }

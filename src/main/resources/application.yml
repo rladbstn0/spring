@@ -1,14 +1,11 @@
 spring:
   application:
     name: back
-  datasource:
-    url: jdbc:h2:./db_dev;Mode=MySQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-#  output:
-#    ansi:
-#      enabled: always
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
   jpa:
     show-sql: true
     hibernate:
